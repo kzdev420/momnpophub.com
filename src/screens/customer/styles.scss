@@ -1,0 +1,128 @@
+.custom-back {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 975px;
+    z-index: -1;
+    overflow: hidden;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.c-main-frame, .confirm-frame {
+    min-height: 750px;
+}
+
+.c-main-frame {
+    padding-top: 150px;
+
+    span.title {
+        color: #1f1f1f;
+        font-family: "Montserrat-Bold";
+        font-size: 36px;
+        line-height: 43px;
+    }
+
+    .desc {
+        width: 960px;
+        margin: auto;
+        p {
+            margin: 27px 0;
+            color: #1f1f1f;
+            font-family: "Montserrat-Regular";
+            font-size: 16px;
+            line-height: 24px;
+            text-align: center;
+        }
+    }
+
+    .c-form {
+        width: 370px;
+        padding-top: 13px;
+        display: flex;
+
+        input {
+            flex: 1;
+            border-top-right-radius: 0;
+            border-bottom-right-radius: 0;
+        }
+
+        button.submit {
+            width: 59px;
+            height: 57px;
+            border: 0;
+            background: linear-gradient(180deg, #BA1F4A, #E01B52);
+            box-shadow: 0px 15px 18px -6px rgba(200,28,76,0.4);
+            color: white;
+            font-size: 18px;
+            border-top-right-radius: 8px;
+            border-bottom-right-radius: 8px;
+
+            &.invalid {
+                background: gray;
+                box-shadow: 0px 15px 18px -6px gray;
+            }
+        }
+    }
+}
+
+@media only screen and (max-width: 1024px) {
+    .c-main-frame {
+        .desc {
+            width: 100%;
+        }
+    }
+}
+
+@media only screen and (max-width: 450px) {
+    .c-main-frame {
+        padding-top: 80px;
+
+        .c-form {
+            width: 280px;
+        }
+    }
+
+    .c-main-frame, .confirm-frame {
+        min-height: 600px;
+    }
+}
+
+.confirm-frame {
+    padding-top: 150px;
+
+    .got-it {
+        padding-top: 20px;
+        padding-bottom: 40px;
+
+        span.title {
+            color: #1f1f1f;
+            font-family: "Montserrat-Bold";
+            font-size: 36px;
+            line-height: 43px;
+            text-align: center;
+        }
+
+        p {
+            margin: 28px 0;
+            color: #1f1f1f;
+            font-family: "Montserrat-Regular";
+            font-size: 16px;
+            line-height: 24px;
+            text-align: center;
+        }
+    }
+    
+    span.back-to-home {
+        color: #c81c4c;
+        font-family: "Montserrat-Medium";
+        font-size: 14px;
+        line-height: 17px;
+        text-align: center;
+        padding-bottom: 5px;
+        border-bottom: 1px solid #c81c4c;
+        text-transform: uppercase;
+        cursor: pointer;
+    }
+}

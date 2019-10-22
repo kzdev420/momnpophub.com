@@ -1,0 +1,161 @@
+@media only screen and (min-width: 1280px){
+
+    .mnph-main-container {
+        width: 1200px;
+        margin: auto;
+    }
+}
+
+@media only screen and (max-width: 1280px) and (min-width: 825px){
+
+    .mnph-main-container {
+        width: 100%;
+        display: inline-block;
+        padding: 0 40px;
+        box-sizing: border-box;
+    }
+}
+
+@media only screen and (max-width: 824px) {
+
+    .mnph-main-container {
+        width: 100%;
+        display: inline-block;
+        padding: 0 20px;
+        box-sizing: border-box;
+    }
+}
+
+html {
+    /* width */
+    ::-webkit-scrollbar {
+        width: 2px;
+    }
+
+    /* Track */
+    ::-webkit-scrollbar-track {
+        background: #f1f1f1; 
+    }
+
+    /* Handle */
+    ::-webkit-scrollbar-thumb {
+        background: #888; 
+    }
+
+    /* Handle on hover */
+    ::-webkit-scrollbar-thumb:hover {
+        background: #555; 
+    }
+}
+
+@font-face {
+    font-family: "Montserrat-Regular";
+    src: url(/assets/fonts/Montserrat-Regular.otf) format("opentype");
+}
+
+@font-face {
+    font-family: "Montserrat-Bold";
+    src: url(/assets/fonts/Montserrat-Bold.otf) format("opentype");
+}
+
+@font-face {
+    font-family: "Montserrat-Semi-Bold";
+    src: url(/assets/fonts/Montserrat-SemiBold.otf) format("opentype");
+}
+
+@font-face {
+    font-family: "Montserrat-Light";
+    src: url(/assets/fonts/Montserrat-Light.otf) format("opentype");
+}
+
+@font-face {
+    font-family: "Montserrat-Medium";
+    src: url(/assets/fonts/Montserrat-Medium.ttf) format("opentype");
+}
+
+@font-face {
+    font-family: "Montserrat-Black";
+    src: url(/assets/fonts/Montserrat-Black.ttf) format("opentype");
+}
+
+@media only screen and (min-width: 400px) {
+    .mnph-row {
+        margin: 0 -10px;
+        width: 100%;
+        display: flex;
+    }
+
+    .mnph-col {
+        padding: 0 10px;
+        flex: 1;
+    }
+}
+
+@media only screen and (max-width: 400px) {
+    .mnph-row {
+        margin: 0 -10px;
+        width: 100%;
+        display: block;
+    }
+    
+    .mnph-col {
+        padding: 0 10px;
+    }
+}
+
+.form-input {
+    width: 100%;
+    position: relative;
+
+    .npmh-input {
+        width: 100%;
+        border: 1px solid #D8D8D8;
+        background: white;
+        height: 57px;
+        border-radius: 8px;
+        color: #787878;
+        font-family: "Montserrat-Regular";
+        font-size: 14px;
+        line-height: 22px;
+        padding: 14px;
+        box-sizing: border-box;
+    
+        &::placeholder {
+            color: #787878;
+            opacity: 1; /* Firefox */
+        }
+    
+        &::-ms-input-placeholder { /* Internet Explorer 10-11 */
+            color: red;
+        }
+
+        &::-ms-input-placeholder { /* Microsoft Edge */
+            color: red;
+        }
+    
+        &:focus {
+            color: #1F1F1F;
+            border: 1px solid #1F1F1F;
+            outline: none;
+        }
+    
+        &.invalid {
+            border: 1px solid #db2269;
+        }
+    
+        &.valid {
+            border: 1px solid #03a03b;
+        }
+    }
+    
+    .input-error {
+        position: absolute;
+        top: 4px;
+        left: 14px;
+
+        color: #db2269;
+        font-family: "Montserrat-Regular";
+        font-size: 10px;
+        line-height: 12px;
+    }
+}

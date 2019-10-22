@@ -1,0 +1,139 @@
+.back2 {
+    background-position: top;
+    background-repeat: no-repeat;
+}
+
+.howitworks-frame {
+    width: 100%;
+    text-align: center;
+
+    span.title {
+        color: #1f1f1f;
+        font-family: "Montserrat-Bold";
+        font-size: 36px;
+        line-height: 43px;
+        text-align: center;
+    }
+
+    .desc {
+        padding-top: 50px;
+        margin: auto;
+
+        p {
+            margin: 0;
+            color: #1f1f1f;
+            font-family: "Montserrat-Regular";
+            font-size: 16px;
+            line-height: 24px;
+            text-align: center;
+        }
+    }
+
+    .contents {
+        padding-top: 260px;
+
+        .content-item {
+            margin: auto;
+            padding-bottom: 120px;
+
+            .item-no {
+                span {
+                    color: #ffb648;
+                    font-family: "Montserrat-Bold";
+                    font-size: 72px;
+                    line-height: 50px;
+                    text-align: center;
+                }
+            }
+
+            .item-desc {
+
+                .item-title {
+                    span {
+                        color: #1f1f1f;
+                        font-family: "Montserrat-Semi-Bold";
+                        font-size: 24px;
+                        line-height: 29px;
+                        text-transform: uppercase;
+                    }
+                }
+
+                p {
+                    margin: 3px 0;
+                    color: #1f1f1f;
+                    font-family: "Montserrat-Regular";
+                    font-size: 16px;
+                    line-height: 24px;
+                }
+            }
+        }
+    }
+}
+
+@media only screen and (min-width: 900px) {
+    .howitworks-frame {
+        padding-top: 280px;
+        .desc {
+            width: 800px;
+        }
+
+        .contents {
+            .content-item {
+                width: 653px;
+                display: flex;
+                flex-direction: row;
+
+                .item-no {
+                    width: 156px;
+                    text-align: left;
+                }
+
+                .item-desc {
+                    flex: 1;
+                }
+            }
+        }
+    }
+}
+
+@media only screen and (max-width: 900px) and (min-width: 350px) {
+    .howitworks-frame {
+        padding-top: 230px;
+    }
+}
+
+@media only screen and (max-width: 350px) {
+    .howitworks-frame {
+        padding-top: 200px;
+    }
+}
+
+@media only screen and (max-width: 900px) {
+    .howitworks-frame {
+        // padding-top: 268px;
+        .desc {
+            width: 100%
+        }
+
+        .contents {
+            .content-item {
+                width: 100%;
+                text-align: center;
+
+                .item-no {
+                    width: 100%;
+                    padding-bottom: 30px
+                }
+
+                .item-desc {
+                    width: 100%;
+                    text-align: center;
+
+                    .item-title {
+                        padding-bottom: 15px;
+                    }
+                }
+            }
+        }
+    }
+}

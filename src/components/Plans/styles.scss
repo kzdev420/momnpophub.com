@@ -1,0 +1,240 @@
+
+@media only screen and (min-width: 900px) {
+    .plans-frame {
+        .desc {
+            width: 800px;
+            margin: auto;
+        }
+    }
+}
+
+@media only screen and (max-width: 900px) {
+    .plans-frame {
+        .desc {
+            width: 100%
+        }
+    }
+}
+
+.back3 {
+    background-position: top;
+    background-repeat: no-repeat;
+    margin-top: -250px;
+    padding-top: 500px;
+    min-height: 1634px;
+}
+
+.plans-frame {
+    text-align: center;
+
+    span.title {
+        color: #1f1f1f;
+        font-family: "Montserrat-Bold";
+        font-size: 36px;
+        line-height: 43px;
+        text-align: center;
+    }
+
+    .desc {
+        padding-top: 50px;
+
+        p {
+            margin: 0;
+            color: #1f1f1f;
+            font-family: "Montserrat-Regular";
+            font-size: 16px;
+            line-height: 24px;
+            text-align: center;
+        }
+    }
+
+    .plans {
+        padding-top: 100px;
+        padding-bottom: 50px;
+        
+
+        .plan-item {
+            border-radius: 8px;
+            background: #ffffff;
+            height: 746px;
+            box-sizing: border-box;
+
+            .plan-title {
+                color: #ffb648;
+                font-family: "Montserrat-Regular";
+                font-size: 24px;
+                line-height: 29px;
+                text-align: center;
+                text-transform: uppercase;
+            }
+
+            .title-divid {
+                margin-top: 10px;
+                width: 100%;
+                height: 1px;
+                background: radial-gradient(ellipse, #FFB648, #FFFFFF);
+            }
+
+            .price-section {
+                padding-top: 27px;
+                display: flex;
+                justify-content: center;
+
+                .currency-unit {
+                    display: flex;
+                    flex: 1;
+                    align-items: flex-start;
+                    justify-content: flex-end;
+                    span {
+                        color: #1f1f1f;
+                        font-family: "Montserrat-Bold";
+                        font-size: 24px;
+                        line-height: 29px;
+                    }
+                }
+
+                .price {
+                    span {
+                        color: #1f1f1f;
+                        font-family: "Montserrat-Bold";
+                        font-size: 72px;
+                        line-height: 50px;
+                    }
+                }
+
+                .type {
+                    display: flex;
+                    flex: 1;
+                    align-items: flex-end;
+
+                    span {
+                        color: #a1a1a1;
+                        font-family: "Montserrat-Regular";
+                        font-size: 12px;
+                        line-height: 14px;
+                        text-transform: uppercase;
+                    }
+                }
+            }
+
+            .actions {
+                padding-top: 35px;
+
+                button {
+                    width: 185px;
+                    height: 64px;
+                    border: 0;
+                    border-radius: 8px;
+                    background: linear-gradient(127deg, #FF7A24, #FFB648);
+
+                    .free {
+                        color: #ffffff;
+                        font-family: "Montserrat-Bold";
+                        font-size: 16px;
+                        line-height: 19px;
+                        text-align: center;
+                    }
+
+                    .reg {
+                        color: #fffaf3;
+                        font-family: "Montserrat-Medium";
+                        font-size: 12px;
+                        line-height: 15px;
+                        text-align: center;
+                    }
+                }
+            }
+
+            .content-item {
+                padding: 20px 0 10px 0;
+
+                .val {
+                    color: #1f1f1f;
+                    font-family: "Montserrat-Regular";
+                    font-size: 16px;
+                    line-height: 19px;
+                    text-align: center;
+                }
+
+                .desc {
+                    color: #a1a1a1;
+                    font-family: "Montserrat-Regular";
+                    font-size: 12px;
+                    font-weight: 400;
+                    line-height: 14px;
+                    text-align: center;
+                }
+            }
+        }
+    }
+
+    .aboutus-btn-free-business-invitation {
+        margin: auto;
+    }
+}
+
+@media only screen and (min-width: 1280px) {
+    .plans-frame {
+        .plans {
+            display: flex;
+
+            .plan-item {
+                flex: 1;
+                padding: 50px;
+
+                &:not(:first-child) {
+                    margin-left: 30px;
+                }
+            }
+        }
+    }
+}
+
+@media only screen and (max-width: 1280px) and (min-width: 900px) {
+    .plans-frame {
+        .plans {
+            display: flex;
+
+            .plan-item {
+                flex: 1;
+                padding: 30px 20px;
+
+                &:not(:first-child) {
+                    margin-left: 20px;
+                }
+            }
+        }
+    }
+}
+
+@media only screen and (max-width: 900px) and (min-width: 520px) {
+    .plans-frame {
+        .plans {
+            display: block;
+
+            .plan-item {
+                margin: auto;
+                margin-bottom: 20px;
+                width: 480px;
+                padding: 50px;
+                border: 1px solid lightgray;
+            }
+        }
+    }
+}
+
+@media only screen and (max-width: 520px) {
+    .plans-frame {
+        .plans {
+            display: block;
+
+            .plan-item {
+                margin: auto;
+                margin-bottom: 20px;
+                width: 100%;
+                padding: 30px;
+                border: 1px solid lightgray;
+            }
+        }
+    }
+}

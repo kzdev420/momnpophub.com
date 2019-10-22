@@ -1,0 +1,105 @@
+.mnph-footer {
+
+    .mnph-main-container {
+        padding-top: 50px;
+        padding-bottom: 20px;
+        display: flex;
+
+        .bottom-nav {
+            flex: 1;
+
+            a {
+                text-decoration: none;
+                color: #1f1f1f;
+                font-family: "Montserrat-Regular";
+                font-size: 16px;
+                line-height: 19px;
+            }
+        }
+
+        .copyright {
+
+            span {
+                color: #1f1f1f;
+                font-family: "Montserrat-Regular";
+                font-size: 16px;
+                line-height: 19px;
+            }
+        }
+    }
+}
+
+@media only screen and (min-width: 1200px){
+    .mnph-footer {
+
+        .mnph-main-container {
+            display: flex;
+    
+            .bottom-nav {
+                flex: 1;
+                text-align: left;
+
+                a {
+                    padding-right: 60px;
+                }
+            }
+        }
+    }
+}
+
+@media only screen and (max-width: 1201px) and (min-width: 1024px) {
+    .mnph-footer {
+
+        .mnph-main-container {
+            display: flex;
+    
+            .bottom-nav {
+                flex: 1;
+                text-align: left;
+
+                a {
+                    padding-right: 15px;
+                }
+            }
+        }
+    }
+}
+
+@media only screen and (max-width: 1025px) and (min-width: 678px) {
+    .mnph-footer {
+
+        .mnph-main-container {
+            display: block;
+    
+            .bottom-nav {
+                text-align: center;
+
+                a {
+                    padding-right: 15px;
+                }
+            }
+
+            .copyright {
+                padding-top: 40px;
+            }
+        }
+    }
+}
+
+@media only screen and (max-width: 679px) {
+    .mnph-footer {
+
+        .mnph-main-container {
+            display: block;
+    
+            .bottom-nav {
+                text-align: center;
+
+                a {
+                    display: block;
+                    margin-bottom: 15px;
+                }
+            }
+        }
+    }
+}

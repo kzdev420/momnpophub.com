@@ -1,0 +1,34 @@
+.mnph-social-info {
+    width: 100%;
+
+    .social-item {
+        width: 48px;
+        height: 48px;
+        color: #A1A1A1;
+        border: 0;
+        background: transparent;
+        font-size: 18px;
+        cursor: pointer;
+
+        &:hover {
+            color: #1DB954;
+        }
+
+        svg {
+            width: 14.5px;
+        }
+    }
+
+    .divid {
+        margin-top: 20px;
+        width: 100%;
+        height: 1px;
+        background: linear-gradient(0deg, #FFFFFF, #FFB648);
+    }
+
+    .mnph-social-list {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+}
