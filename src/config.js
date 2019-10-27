@@ -1,16 +1,15 @@
-import firebase from 'firebase';
+import firebase from "firebase";
 
 const firebaseConfig = {
-    apiKey: "AIzaSyCp7VSDbSyTz30h3mlPs6WvPkbiJTvuQNA",
-    authDomain: "momnpophub-dev-qa.firebaseapp.com",
-    databaseURL: "https://momnpophub-dev-qa.firebaseio.com",
-    projectId: "momnpophub-dev-qa",
-    storageBucket: "momnpophub-dev-qa.appspot.com",
-    messagingSenderId: "745983398155",
-    appId: "1:745983398155:web:267d03640913da077f120e",
-    measurementId: "G-B5DYGP70DJ"
+  apiKey: "AIzaSyDm2zfZS1UaZ0yq-DJqGfnLSHnfTVh8uKM",
+  authDomain: "momnpophub-test.firebaseapp.com",
+  databaseURL: "https://momnpophub-test.firebaseio.com",
+  projectId: "momnpophub-test",
+  storageBucket: "momnpophub-test.appspot.com",
+  messagingSenderId: "866510338071",
+  appId: "1:866510338071:web:2a9910e33ef7c38e"
 };
 
-var firebaseApp = firebase.initializeApp(firebaseConfig);
-const  database = firebaseApp.database();
-export default database;
+firebase.initializeApp(firebaseConfig);
+const db = firebase.firestore();
+export default db;

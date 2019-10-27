@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
+import isEmail from 'validator/lib/isEmail';
+import firebase from "firebase"
 import DefaultTemplate from '../../templates/default';
 import { HowItWorks, Plans } from '../../components';
 import './styles.scss';
-import isEmail from 'validator/lib/isEmail';
-import database from '../../config';
+import db from '../../config';
 import backgroundImg from '../../assets/images/business-back.png';
 import icCheck from '../../assets/icons/ic_check.png'
 import img1 from '../../assets/images/partner_benefit_nolongterm.png';
@@ -17,51 +18,28 @@ const styles = {
 }
  
 class FreeBusinessInvitationScreen extends Component {
-    constructor() {
-        super()
-        this.state = {
+    state = {
             isSubmitted: false,
             firstName: '',
             lastName: '',
             businessName: '',
-            businessPhone: '',
+            phoneNumber: '',
             email: '',
             errors: {},
-            isAgreedoToTerms: false
+            isAgreedToTerms: false 
         }
-    }
 
     componentDidMount() {
         window.scrollTo(0, 0);
     }
 
-    isMobilePhone (phone) {
-        if (phone.length !== 10) {
-            return false;
-        }
+    isMobilePhone =  phone => phone.length === 10 && [...phone].every(ch => ch >= 0 && ch <= 9 )
 
-        const isDigit = (ch) => {
-            if ((ch >= 0 && ch <= 9)) {
-                return true;
-            }
-        }
-
-        for (var i = 0; i < phone.length; i++) {
-            if (!isDigit(phone[i])) {
-                return false;
-            }
-        }
-
-        return true;
-    }
-
-    handleChange = (event) => {
-        event.preventDefault();
-        const { name, value } = event.target;
-        let errors = this.state.errors;
+    validateForm = (name, value) => {
+        let errors = {};
 
         switch (name) {
-            case 'firstName':
+            case 'firstName': 
                 if (value === '') {
                     errors.firstName = 'Enter your first name.';
                 } else {
@@ -82,13 +60,13 @@ class FreeBusinessInvitationScreen extends Component {
                     errors.businessName = null;
                 }
                 break;
-            case 'businessPhone':
+            case 'phoneNumber':
                 if (value === '') {
-                    errors.businessPhone = 'Enter your phone number.';
+                    errors.phoneNumber = 'Enter your phone number.';
                 } else if (!this.isMobilePhone(value)){
-                    errors.businessPhone = 'invalid phone number.';
+                    errors.phoneNumber = 'invalid phone number.';
                 } else {
-                    errors.businessPhone = null;
+                    errors.phoneNumber = null;
                 }
                 break;
             case 'email':
@@ -103,50 +81,52 @@ class FreeBusinessInvitationScreen extends Component {
             default:
                 break;
         }
-    
-        this.setState({errors, [name]: value});
+        return errors;
+    } 
+
+    isFormValid = errors => (errors.firstName === null && errors.lastName === null && errors.businessName === null && errors.phoneNumber === null && errors.email === null)
+
+    handleChange = event => {
+        event.preventDefault();
+        const { name, value } = event.target;
+        const error = this.validateForm(name, value);
+        this.setState({errors: {...this.state.errors, ...error} , [name]: value});
     }
 
-    onSubmit() {
+    onSubmit = () => {
         let errors = this.state.errors;
-        if (this.state.firstName === ''){
-            errors.firstName = 'Enter your first name.';
+        
+        if (!this.state.isAgreedToTerms) {
+            errors.isAgreedToTerms = 'You should agree to terms and conditions.'
         }
 
-        if (this.state.lastName === ''){
-            errors.lastName = 'Enter your last name.';
-        }
-        
-        if (this.state.businessName === ''){
-            errors.businessName = 'Enter your business name.';
-        }
-        
-        if (this.state.businessPhone === ''){
-            errors.businessPhone = 'Enter your business phone.';
-        }
-        
-        if (this.state.email === ''){
-            errors.email = 'Enter your email address.';
-        }
+        if (this.isFormValid(errors) && this.state.isAgreedToTerms) {
+            const {firstName, lastName, businessName, phoneNumber, email} = this.state;
+            const data = {firstName, lastName, businessName, phoneNumber, email};
+            const uid = new Date().getTime()
+            const createdAt = firebase.firestore.FieldValue.serverTimestamp();
+            const customer = {uid, createdAt, data};
+            db.collection("customers").doc(`${uid}`)
+              .set(customer)
+              .then(() => this.setState({isSubmitted: true}))
+              .catch(error => console.error(error))
 
-        if (!this.state.isAgreedoToTerms) {
-            errors.isAgreedoToTerms = 'You should agree to terms and conditions.'
-        }
 
-        if (errors.firstName === null && errors.lastName === null && errors.businessName === null && errors.businessPhone === null && errors.email === null && this.state.isAgreedoToTerms) {
-            const ref = database.ref('free-business-invitation').push();
-            ref.set({
-                firstName: this.state.firstName,
-                lastName: this.state.lastName,
-                businessName: this.state.businessName,
-                businessPhone: this.state.businessPhone,
-                email: this.state.email,
-                id: ref.key
-            }).then(() => {
-                this.setState({isSubmitted: true});
-            }).catch(error => {
-                console.log(error);
-            })
+
+            // const ref = database.ref('free-business-invitation').push();
+            // ref.set({
+            //     firstName: this.state.firstName,
+            //     lastName: this.state.lastName,
+            //     businessName: this.state.businessName,
+            //     phoneNumber: this.state.phoneNumber,
+            //     email: this.state.email,
+            //     id: ref.key
+            // }).then(() => {
+            //     this.setState({isSubmitted: true});
+            // }).catch(error => {
+            //     console.log(error);
+            // })
+
         } else {
             this.setState({errors})
         }
@@ -154,7 +134,7 @@ class FreeBusinessInvitationScreen extends Component {
 
     toggleChange = () => {
         this.setState({
-          isAgreedoToTerms: !this.state.isAgreedoToTerms,
+          isAgreedToTerms: !this.state.isAgreedToTerms,
         });
     }
 
@@ -225,13 +205,13 @@ class FreeBusinessInvitationScreen extends Component {
                                             <div className="mnph-col row-gap">
                                                 <div className="form-input">
                                                     {
-                                                        this.state.errors.businessPhone ? (
-                                                            <input className="npmh-input invalid" value={this.state.businessPhone} type="text" placeholder="Business Phone" name="businessPhone" onChange={(event) => this.handleChange(event)}/>
+                                                        this.state.errors.phoneNumber ? (
+                                                            <input className="npmh-input invalid" value={this.state.phoneNumber} type="text" placeholder="Business Phone" name="phoneNumber" onChange={(event) => this.handleChange(event)}/>
                                                         ) : (
-                                                            <input className={this.state.errors.businessPhone === undefined ? "npmh-input" : "npmh-input valid"} value={this.state.businessPhone} type="text" placeholder="Business Phone" name="businessPhone" onChange={(event) => this.handleChange(event)}/>
+                                                            <input className={this.state.errors.phoneNumber === undefined ? "npmh-input" : "npmh-input valid"} value={this.state.phoneNumber} type="text" placeholder="Business Phone" name="phoneNumber" onChange={(event) => this.handleChange(event)}/>
                                                         )
                                                     }
-                                                    <span className="input-error">{this.state.errors.businessPhone}</span>
+                                                    <span className="input-error">{this.state.errors.phoneNumber}</span>
                                                 </div>
                                             </div>
                                         </div>
@@ -253,9 +233,9 @@ class FreeBusinessInvitationScreen extends Component {
                                         <div className="mnph-row">
                                             <div className="mnph-col">
                                                 <div className="form-input">
-                                                    <label className={this.state.errors.isAgreedoToTerms === undefined ? "mnph-checkbox" : "mnph-checkbox invalid"}>
+                                                    <label className={this.state.errors.isAgreedToTerms === undefined ? "mnph-checkbox" : "mnph-checkbox invalid"}>
                                                         I agree to terms and conditions.
-                                                        <input type="checkbox" checked={this.state.isAgreedoToTerms} onChange={this.toggleChange}/>
+                                                        <input type="checkbox" checked={this.state.isAgreedToTerms} onChange={this.toggleChange}/>
                                                         <span className="checkmark"></span>
                                                     </label>
                                                 </div>
@@ -264,7 +244,7 @@ class FreeBusinessInvitationScreen extends Component {
 
                                         <div className="actions">
                                             <button 
-                                                className={errors.firstName === null && errors.lastName === null && errors.businessName === null && errors.businessPhone === null && errors.email === null && this.state.isAgreedoToTerms ? "submit" : "submit gray"} 
+                                                className={errors.firstName === null && errors.lastName === null && errors.businessName === null && errors.phoneNumber === null && errors.email === null && this.state.isAgreedToTerms ? "submit" : "submit gray"} 
                                                 onClick={() => this.onSubmit()}>Submit information</button>
                                         </div>
                                     </div>
